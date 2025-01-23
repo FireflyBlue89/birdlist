@@ -1,1 +1,24 @@
-<h1>hello world</h1>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <h1>hello world</h1>
+
+    <div th:if="${anyChar}" th:each="char : ${listChar}">
+        <p th:text="${char.getName()}"></p>
+        <p th:text="${char.getDescription()}"></p>
+        <img th:src="@{images/profile/}+${char.getName()}" />
+        <form action="#" th:action="@{/deleteChar/}+${char.getName()}" th:object="${newChar}" method="post">
+            <input type="submit" value="Delete"/>
+        </form>
+    </div>
+
+    <div th:if="${!anyChar}">
+        <p>empty</p>
+    </div>
+
+    <form action="#" enctype="multipart/form-data" th:action="@{/addChar}" th:object="${newChar}" method="post">
+        <p>Name (must be new)</p> <input type="text" th:field="*{name}" />
+        <p>Description</p> <input type="text" th:field="*{description}" />
+        <p>Profile image</p> <input type="file" name="profile" accept="image/png, image/jpeg"/>
+        <input type="submit" value="Submit" />
+    </form>
+</html>

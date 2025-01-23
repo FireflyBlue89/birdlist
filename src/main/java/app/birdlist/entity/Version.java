@@ -1,8 +1,13 @@
 package app.birdlist.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "versions")
 public class Version {
     @Id
     @Column(name="ver_id")
@@ -11,8 +16,12 @@ public class Version {
     @Column(name="ver_title")
     private String title;
 
-    @Column(name="ver_char_img")
-    private Byte[] profile_image;
+    @Column(name="ver_date")
+    private String date;
+
+    @Lob
+    @Column(name="ver_char_img", columnDefinition="MEDIUMBLOB")
+    private byte[] profile_image;
     
     @Column(name="ver_changelog")
     private String changelog;
@@ -33,11 +42,19 @@ public class Version {
         this.title = title;
     }
 
-    public Byte[] getProfile_image() {
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public byte[] getProfile_image() {
         return profile_image;
     }
 
-    public void setProfile_image(Byte[] profile_image) {
+    public void setProfile_image(byte[] profile_image) {
         this.profile_image = profile_image;
     }
 

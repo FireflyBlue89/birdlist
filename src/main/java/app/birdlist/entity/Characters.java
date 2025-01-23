@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -15,8 +16,9 @@ public class Characters {
     @Column(name="char_name")
     private String name;
 
-    @Column(name="char_profile")
-    private Byte[] profile_image;
+    @Lob
+    @Column(name="char_profile", columnDefinition="MEDIUMBLOB")
+    private byte[] profile_image;
     
     @Column(name="char_desc")
     private String description;
@@ -30,10 +32,10 @@ public class Characters {
     public void setName(String name) {
         this.name = name;
     }
-    public Byte[] getProfile_image() {
+    public byte[] getProfile_image() {
         return profile_image;
     }
-    public void setProfile_image(Byte[] profile_image) {
+    public void setProfile_image(byte[] profile_image) {
         this.profile_image = profile_image;
     }
     public String getDescription() {
