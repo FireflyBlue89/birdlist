@@ -1,24 +1,67 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <h1>hello world</h1>
+    <head>
+        <link rel="stylesheet" href="home.css">
+        <title>BirdList</title>
+    </head>
+    <body>
+        <div class="mainIHM">
+            <h1>BirdList</h1>
 
-    <div th:if="${anyChar}" th:each="char : ${listChar}">
-        <p th:text="${char.getName()}"></p>
-        <p th:text="${char.getDescription()}"></p>
-        <img th:src="@{images/profile/}+${char.getName()}" />
-        <form action="#" th:action="@{/deleteChar/}+${char.getName()}" th:object="${newChar}" method="post">
-            <input type="submit" value="Delete"/>
-        </form>
-    </div>
+            <div class="lists">
+                <div class="quickList">
+                    <div class="listHeader">
+                        <h2>Quick list</h2>
+                    </div>
+                    <div th:each="char : ${listChar}">
+                        <a th:href="@{/char/}+${char.getName()}">
+                            <p th:text="${char.getName()}"></p>
+                        </a>
+                    </div>
 
-    <div th:if="${!anyChar}">
-        <p>empty</p>
-    </div>
+                    <div class="announcement" th:if="${!anyChar}">
+                        <p>No characters!</p>
+                    </div>
+                </div>
 
-    <form action="#" enctype="multipart/form-data" th:action="@{/addChar}" th:object="${newChar}" method="post">
-        <p>Name (must be new)</p> <input type="text" th:field="*{name}" />
-        <p>Description</p> <input type="text" th:field="*{description}" />
-        <p>Profile image</p> <input type="file" name="profile" accept="image/png, image/jpeg"/>
-        <input type="submit" value="Submit" />
-    </form>
+                <div class="mainList">
+                    <div class="listHeader">
+                        <h2>List of characters</h2>
+                        <button onClick="">+</button>
+                    </div>
+                    <div class="charElement" th:if="${anyChar}" th:each="char : ${listChar}">
+                        <img th:src="@{images/profile/}+${char.getName()}" />
+                        <div class="charBox">
+                            <div class="charInfo">
+                                <div class="charInfoName">
+                                    <p th:text="${char.getName()}"></p>
+                                </div>
+                                <div class="charInfoDesc">
+                                    <p th:text="${char.getDescription()}"></p>
+                                </div>
+                            </div>
+                            <div class="charButtons">
+                                <button class="charView" onClick="">View Outfits</button>
+                                <form action="#" th:action="@{/deleteChar/}+${char.getName()}" th:object="${newChar}" method="post">
+                                    <input class="charDelete" type="submit" value="Delete"/>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="announcement" th:if="${!anyChar}">
+                        <p>No characters!</p>
+                    </div>
+                </div>
+            </div>  
+
+            <form action="#" enctype="multipart/form-data" th:action="@{/addChar}" th:object="${newChar}" method="post">
+                <p>Name (must be new)</p> <input type="text" th:field="*{name}" />
+                <p>Description</p> <input type="text" th:field="*{description}" />
+                <p>Profile image</p> <input type="file" name="profile" accept="image/png, image/jpeg"/>
+                <input type="submit" value="Submit" />
+            </form>         
+        </div>
+        
+    </body>
 </html>

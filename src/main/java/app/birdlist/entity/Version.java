@@ -16,14 +16,14 @@ public class Version {
     @Column(name="ver_title")
     private String title;
 
-    @Column(name="ver_date")
+    @Column(name="ver_date", columnDefinition="DATE")
     private String date;
 
     @Lob
     @Column(name="ver_char_img", columnDefinition="MEDIUMBLOB")
     private byte[] profile_image;
     
-    @Column(name="ver_changelog")
+    @Column(name="ver_changelog", columnDefinition="VARCHAR(1000)")
     private String changelog;
 
     public int getId() {

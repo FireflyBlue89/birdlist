@@ -57,11 +57,6 @@ public class CharacterController {
 			chara.setName(newChar.getName());
 			chara.setDescription(newChar.getDescription());
 			chara.setProfile_image(allB);
-			System.out.println(allB.length);
-			for (byte b : allB) {
-				System.out.print(b);
-			}
-			System.out.println(allB);
 			charaBase.save(chara);
 			charaBase.flush();
 		}else{

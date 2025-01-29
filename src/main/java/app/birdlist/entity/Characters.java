@@ -20,7 +20,7 @@ public class Characters {
     @Column(name="char_profile", columnDefinition="MEDIUMBLOB")
     private byte[] profile_image;
     
-    @Column(name="char_desc")
+    @Column(name="char_desc", columnDefinition="VARCHAR(3000)")
     private String description;
 
     @OneToMany
