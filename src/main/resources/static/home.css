@@ -1,5 +1,7 @@
 body{
     background-image: url('sky.jpg');
+    height: 100%;
+    width: 100%;
 }
 
 .mainIHM{
@@ -104,6 +106,7 @@ body{
 }
 
 .charInfoName{
+    overflow:hidden;
     font-size: 25px;
     font-weight: bold;
     color: white;
@@ -115,6 +118,7 @@ body{
 }
 
 .charInfoDesc{
+    overflow:hidden;
     height: 106px;
     padding-left: 3px;
     word-break: break-all;
@@ -165,6 +169,7 @@ body{
 }
 
 .quickList{
+    overflow: hidden;
     border-radius: 5px;
     border-top: 3px solid rgb(54, 87, 122);
     background-color: rgb(43, 81, 121);
@@ -173,3 +178,78 @@ body{
     margin-left: 2.5%;
     margin-right: 2.5%;
 }
+
+.newCharIHM{
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    overflow: visible;
+}
+
+.newCharForm{
+    text-shadow: 3px 3px rgb(87, 86, 86);
+    color: white;
+    background-color: rgb(43, 81, 121);
+    border-radius: 5px;
+    border-top: 5px solid rgb(54, 87, 122);
+    width: 25%;
+    height: 60%;
+    position: absolute;
+    top: 20%;
+    left: 37.5%;
+    padding-left: 0.75%;
+    padding-top:1%;
+}
+
+.newCharForm p{
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 3%;
+    margin-left: 5px;
+    margin-bottom: 3px;
+}
+
+.newCharForm h2{
+    height: 7%;
+    margin: 0;
+}
+
+#newCharName{
+    width:95%;
+    height: 8%;
+    margin-bottom: 1%;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+#newCharDesc{
+    width: 95%;
+    height: 40%;
+    margin-bottom: 1%;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+#newCharSubmit{
+    color: white;
+    font-size: 15px;
+    text-shadow: 2px 2px rgb(10, 10, 10);
+    width: 40%;
+    height: 7%;
+    margin-left: 30%;
+    margin-top: 6%;
+    margin-bottom: 4%;
+    border-radius: 10px;
+    background-color: rgb(118, 164, 202);
+    border-color: white;
+}
+
+textarea {
+   resize: none;
+}
+  

@@ -27,14 +27,14 @@
                 <div class="mainList">
                     <div class="listHeader">
                         <h2>List of characters</h2>
-                        <button onClick="">+</button>
+                        <button onClick="displayNewCharForm()">+</button>
                     </div>
                     <div class="charElement" th:if="${anyChar}" th:each="char : ${listChar}">
                         <img th:src="@{images/profile/}+${char.getName()}" />
                         <div class="charBox">
                             <div class="charInfo">
                                 <div class="charInfoName">
-                                    <p th:text="${char.getName()}"></p>
+                                    <p  th:text="${char.getName()}"></p>
                                 </div>
                                 <div class="charInfoDesc">
                                     <p th:text="${char.getDescription()}"></p>
@@ -53,15 +53,40 @@
                         <p>No characters!</p>
                     </div>
                 </div>
-            </div>  
-
-            <form action="#" enctype="multipart/form-data" th:action="@{/addChar}" th:object="${newChar}" method="post">
-                <p>Name (must be new)</p> <input type="text" th:field="*{name}" />
-                <p>Description</p> <input type="text" th:field="*{description}" />
-                <p>Profile image</p> <input type="file" name="profile" accept="image/png, image/jpeg"/>
-                <input type="submit" value="Submit" />
-            </form>         
+            </div> 
         </div>
+
+        <div onclick="hideNewCharForm()" class="newCharIHM" id="newCharIHM">
+            <form class="newCharForm" action="#" enctype="multipart/form-data" th:action="@{/addChar}" th:object="${newChar}" method="post">
+                <h2>Add a new character</h2>
+                <p>Name</p> 
+                <input required maxlength="255" id="newCharName" type="text" th:field="*{name}" />
+                <p>Description</p> 
+                <textarea required maxlength="3000" oninput="checksize" id="newCharDesc" type="text" th:field="*{description}" />
+                <p>Profile image</p> 
+                <input id="newCharFile" required type="file" name="profile" accept="image/png, image/jpeg"/><br>
+                <input id="newCharSubmit" type="submit" value="Submit" />
+            </form>         
+        </div> 
+
+        <script>
+            function displayNewCharForm() {
+                document.getElementById("newCharIHM").style.display = "block";
+                console.log("display");
+            }
+
+            function hideNewCharForm(event) {
+                event = event || window.event;
+                var target = event.target || event.srcElement;
+
+                if(target.id != "newCharIHM") {
+                    return;
+                }
+
+                document.getElementById("newCharIHM").style.display = "none";
+                console.log("hide");
+            }
+        </script>
         
     </body>
 </html>
