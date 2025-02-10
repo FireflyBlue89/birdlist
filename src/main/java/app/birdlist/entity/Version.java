@@ -1,5 +1,7 @@
 package app.birdlist.entity;
 
+import java.sql.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -17,14 +19,17 @@ public class Version {
     private String title;
 
     @Column(name="ver_date", columnDefinition="DATE")
-    private String date;
+    private Date date;
 
     @Lob
     @Column(name="ver_char_img", columnDefinition="MEDIUMBLOB")
-    private byte[] profile_image;
+    private byte[] character_image;
     
     @Column(name="ver_changelog", columnDefinition="VARCHAR(1000)")
     private String changelog;
+
+    @Column(name="ver_code", columnDefinition="VARCHAR(3000)")
+    private String ver_code;
 
     public int getId() {
         return id;
@@ -42,20 +47,20 @@ public class Version {
         this.title = title;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public byte[] getProfile_image() {
-        return profile_image;
+    public byte[] getCharacter_image() {
+        return character_image;
     }
 
-    public void setProfile_image(byte[] profile_image) {
-        this.profile_image = profile_image;
+    public void setCharacter_image(byte[] character_image) {
+        this.character_image = character_image;
     }
 
     public String getChangelog() {
@@ -64,5 +69,13 @@ public class Version {
 
     public void setChangelog(String changelog) {
         this.changelog = changelog;
+    }
+
+    public String getVer_code() {
+        return ver_code;
+    }
+
+    public void setVer_code(String ver_code) {
+        this.ver_code = ver_code;
     }
 }

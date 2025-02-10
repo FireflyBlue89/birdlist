@@ -13,7 +13,7 @@
                     <div class="listHeader">
                         <h2>Quick list</h2>
                     </div>
-                    <div th:each="char : ${listChar}">
+                    <div class="quickListElement" th:each="char : ${listChar}">
                         <a th:href="@{/char/}+${char.getName()}">
                             <p th:text="${char.getName()}"></p>
                         </a>
@@ -65,14 +65,13 @@
                 <textarea required maxlength="3000" oninput="checksize" id="newCharDesc" type="text" th:field="*{description}" />
                 <p>Profile image</p> 
                 <input id="newCharFile" required type="file" name="profile" accept="image/png, image/jpeg"/><br>
-                <input id="newCharSubmit" type="submit" value="Submit" />
+                <input id="newCharSubmit" type="submit" value="Add" />
             </form>         
         </div> 
 
         <script>
             function displayNewCharForm() {
                 document.getElementById("newCharIHM").style.display = "block";
-                console.log("display");
             }
 
             function hideNewCharForm(event) {
@@ -84,7 +83,6 @@
                 }
 
                 document.getElementById("newCharIHM").style.display = "none";
-                console.log("hide");
             }
         </script>
         

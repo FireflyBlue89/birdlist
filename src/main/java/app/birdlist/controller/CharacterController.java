@@ -16,6 +16,7 @@ import app.birdlist.entity.Characters;
 import app.birdlist.object.InfoCharacter;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
@@ -23,12 +24,13 @@ import org.springframework.web.servlet.view.RedirectView;
 
 
 @Controller
+@RequestMapping("/")
 public class CharacterController {
 
 	@Autowired
 	private CharacterRepository charaBase;
 
-	@GetMapping("/")
+	@GetMapping
 	public String MainPage(Model mainPageModel) {
 		if(charaBase.count() == 0){
 			mainPageModel.addAttribute("anyChar", false);
@@ -49,7 +51,7 @@ public class CharacterController {
 		return "home.html";
 	}
 
-	@PostMapping("/addChar")
+	@PostMapping("addChar")
 	public RedirectView postNewChar(@ModelAttribute InfoCharacter newChar, @RequestParam("profile") MultipartFile profile_pic) throws IOException {
 		if(newChar != null && charaBase.findById(newChar.getName()).isEmpty()){
 			byte[] allB = profile_pic.getBytes();
@@ -76,6 +78,4 @@ public class CharacterController {
 
 		return new RedirectView("/");
 	}
-	
-	
 }

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" href="../outfit.css">
+        <title>BirdList</title>
+    </head>
+    <body>
+        <div class="mainIHM">
+            <h1>BirdList</h1>
+
+            <div class="navBar">
+                <div class="navBarHeader">
+                    <a href="/">&larr;</a>
+                    <h2 th:text="${charName}">Outfits : </h2>
+                    <button onclick="displayNewOutfitForm()">+</button>
+                </div>
+                <div class="navBarContent">
+                    <img th:src="@{../images/profile/}+${charName}" />
+                    <div class="navBarContentText">
+                        <h3>Character's description</h3>
+                        <p th:text="${charDesc}"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lists">
+                <div class="quickList" th:each="outfit : ${charOutfits}">
+                    <p th:text="${outfit.getOut_name()}"></p>
+                </div>
+                <div class="mainList" th:each="outfit : ${charOutfits}">
+                    <h2>Outfits</h2>
+                    <div>
+                        <img th:src="@{../images/version/}+${outfit.getVer_id()}" />
+                        <p th:text="${outfit.getOut_name()}"></p>
+                        <p th:text="${outfit.getVer_desc()}"></p>
+                        <p th:text="${outfit.getVer_date()}"></p>
+                    </div>
+                </div>
+            </div> 
+        </div>  
+        
+        <div onclick="hideNewCharForm()">
+            <form class="newCharForm" action="#" enctype="multipart/form-data" th:action="@{/char/__${charName}__/addOutfit}" th:object="${newOutfit}" method="post">
+                <h2>Add a new outfit with its first version</h2>
+                <p>Outfit name</p> 
+                <input required maxlength="255" id="newCharName" type="text" th:field="*{out_name}" />
+                <p>Description of this first version of the outfit</p> 
+                <textarea required maxlength="1000" id="newCharDesc" type="text" th:field="*{ver_desc}" />
+                <p>Date</p> 
+                <input id="newCharFile" required type="date" th:field="*{ver_date}"/>
+                <p>Code</p> 
+                <textarea required maxlength="3000" id="newCharDesc" type="text" th:field="*{ver_code}" />
+                <p>Image of the outfit</p> 
+                <input id="newCharFile" required type="file" name="outfit_image" accept="image/png, image/jpeg"/><br>
+                <input id="newCharSubmit" type="submit" value="Add" />
+            </form>         
+        </div> 
+
+        <script>
+            function displayNewOutfitForm() {
+                document.getElementById("newCharIHM").style.display = "block";
+            }
+
+            function hideNewOutfitForm(event) {
+                event = event || window.event;
+                var target = event.target || event.srcElement;
+
+                if(target.id != "newCharIHM") {
+                    return;
+                }
+
+                document.getElementById("newCharIHM").style.display = "none";
+            }
+        </script>
+    </body>
+</html>

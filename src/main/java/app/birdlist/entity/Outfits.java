@@ -2,8 +2,10 @@ package app.birdlist.entity;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,8 +23,16 @@ public class Outfits {
     @Column(name="outfit_name")
     private String name;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private List<Version> versions;
+
+    public List<Version> getVersions() {
+        return versions;
+    }
+
+    public void setVersions(List<Version> versions) {
+        this.versions = versions;
+    }
 
     public int getId() {
         return id;

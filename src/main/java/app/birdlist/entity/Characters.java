@@ -2,8 +2,10 @@ package app.birdlist.entity;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
@@ -23,7 +25,7 @@ public class Characters {
     @Column(name="char_desc", columnDefinition="VARCHAR(3000)")
     private String description;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private List<Outfits> outfits;
 
     public String getName() {
