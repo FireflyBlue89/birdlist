@@ -21,6 +21,7 @@ import app.birdlist.entity.Outfits;
 import app.birdlist.entity.Version;
 import app.birdlist.object.InfoOutfit;
 import app.birdlist.repository.CharacterRepository;
+import jakarta.transaction.Transactional;
 
 @Controller
 @RequestMapping("/char")
@@ -71,6 +72,7 @@ public class OufitController {
 		return null;
 	}
 	
+	@Transactional
 	@PostMapping("/{charName}/addOutfit")
 	public RedirectView postNewOutfit(@PathVariable String charName, @ModelAttribute InfoOutfit newOutfit, @RequestParam("outfit_image") MultipartFile outfit_pic) throws IOException {
 		if(newOutfit != null && !charaBase.findById(charName).isEmpty() ){
@@ -87,6 +89,8 @@ public class OufitController {
 			ver.setCharacter_image(allB);
 			ver.setChangelog(newOutfit.getVer_desc());
 			ver.setVer_code(newOutfit.getVer_code());
+			ver.setNext(-1);
+			ver.setPrev(-1);
 
 			vers.add(ver);
 
@@ -95,14 +99,30 @@ public class OufitController {
 			
 			outs.add(out);
 
-			charaBase.delete(chara);
-
 			chara.setOutfits(outs);
-			charaBase.save(chara);
-			charaBase.flush();
 		}else{
 			System.out.println("Exist or error");
 		}
 		return new RedirectView("/char/" + charName);
+	}
+
+	@Transactional
+	@PostMapping("/deleteOutfit/{name}/{outfit}")
+	public RedirectView removeOutfit(@PathVariable String name, @PathVariable String outfit) {
+		if(!charaBase.findById(name).isEmpty()){
+			List<Outfits> outfits = charaBase.findById(name).get().getOutfits();
+			if(outfits.size() > 0){
+				for(Outfits out : outfits){
+					if(out.getName().equals(outfit)){
+						outfits.remove(out);
+						break;
+					}
+				}
+			}
+		}else{
+			System.out.println("Exist or error");
+		}		
+
+		return new RedirectView("/char/" + name);
 	}
 }

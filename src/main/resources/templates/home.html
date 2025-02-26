@@ -30,22 +30,24 @@
                         <h2>List of characters</h2>
                         <button onClick="displayNewCharForm()">+</button>
                     </div>
-                    <div class="charElement" th:if="${anyChar}" th:each="char : ${listChar}">
-                        <img th:src="@{images/profile/}+${char.getName()}" />
-                        <div class="charBox">
-                            <div class="charInfo">
-                                <div class="charInfoName">
-                                    <p  th:text="${char.getName()}"></p>
+                    <div>
+                        <div class="charElement" th:if="${anyChar}" th:each="char : ${listChar}">
+                            <img th:src="@{images/profile/}+${char.getName()}" />
+                            <div class="charBox">
+                                <div class="charInfo">
+                                    <div class="charInfoName">
+                                        <p  th:text="${char.getName()}"></p>
+                                    </div>
+                                    <div class="charInfoDesc">
+                                        <p th:text="${char.getDescription()}"></p>
+                                    </div>
                                 </div>
-                                <div class="charInfoDesc">
-                                    <p th:text="${char.getDescription()}"></p>
+                                <div class="charButtons">
+                                    <button class="charView" th:onclick="document.location.href = [[@{/char/}+${char.getName()}]]">View Outfits</button>
+                                    <form id="delChar" action="#" th:action="@{/deleteChar/}+${char.getName()}" th:object="${newChar}" method="post">
+                                        <input class="charDelete" type="button" onclick="displayWarning('delChar', 'warningDelChar')" value="Delete"/>
+                                    </form>
                                 </div>
-                            </div>
-                            <div class="charButtons">
-                                <button class="charView" onClick="">View Outfits</button>
-                                <form action="#" th:action="@{/deleteChar/}+${char.getName()}" th:object="${newChar}" method="post">
-                                    <input class="charDelete" type="submit" value="Delete"/>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -70,7 +72,46 @@
             </form>         
         </div> 
 
+        <div onclick="hideWarning()" class="warningDelChar" id="warningDelChar">
+            <div class="warningContent">
+                <div class="warningTitle">
+                    <h2>Warning</h2>
+                    <p>Are you sure you want to delete this character? </br> This includes the character with all it's outfit and versions</p>
+                </div>
+                <div class="warningButtons">
+                    <button id="warningConfirm" onclick="confirmWarning()">Yes</button>
+                    <button id="warningDelChar" onclick="hideWarning()">No</button>
+                </div>
+            </div>
+        </div>
+
         <script>
+            var formStorage = null;
+            var targetConfirm = null;
+
+            function displayWarning(formName, confirmName){
+                targetConfirm = confirmName;
+                formStorage = document.getElementById(formName);
+                document.getElementById(confirmName).style.display = "block";
+            }
+
+            function hideWarning(event){
+                event = event || window.event;
+                var target = event.target || event.srcElement;
+
+                if(target.id != targetConfirm) {
+                    return;
+                }
+
+                document.getElementById(targetConfirm).style.display = "none";
+                formStorage = null;
+            }
+
+            function confirmWarning(){
+                formStorage.submit();
+            }
+
+
             function displayNewCharForm() {
                 document.getElementById("newCharIHM").style.display = "block";
             }

@@ -68,7 +68,7 @@ public class CharacterController {
 	}
 
 	@PostMapping("/deleteChar/{id}")
-	public RedirectView postMethodName(@PathVariable String id) {
+	public RedirectView deleteChar(@PathVariable String id) {
 		if(!charaBase.findById(id).isEmpty()){
 			charaBase.deleteById(id);
 			charaBase.flush();

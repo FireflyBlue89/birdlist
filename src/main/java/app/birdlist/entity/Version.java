@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
@@ -12,11 +14,18 @@ import jakarta.persistence.Table;
 @Table(name = "versions")
 public class Version {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="ver_id")
     private int id;
 
     @Column(name="ver_title")
     private String title;
+
+    @Column(name="ver_prev")
+    private int prev;
+
+    @Column(name="ver_next")
+    private int next;
 
     @Column(name="ver_date", columnDefinition="DATE")
     private Date date;
@@ -45,6 +54,22 @@ public class Version {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getPrev() {
+        return prev;
+    }
+
+    public void setPrev(int prev) {
+        this.prev = prev;
+    }
+
+    public int getNext() {
+        return next;
+    }
+
+    public void setNext(int next) {
+        this.next = next;
     }
 
     public Date getDate() {

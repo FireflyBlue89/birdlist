@@ -35,7 +35,7 @@
                         </a>
                     </div>
                     <div class="announcement" th:if="${charOutfits.isEmpty()}">
-                        <p>No characters!</p>
+                        <p>No outfits!</p>
                     </div>
                 </div>
                 
@@ -52,11 +52,16 @@
                                 <p th:text="${outfit.getVer_desc()}"></p>
                             </div>
                             <div class="listOutfitButtons">
-                                <button class="listOutfitPositive">Copy Code</button>
-                                <button class="listOutfitPositive">Browse versions</button>
-                                <button class="listOutfitNegative">Delete outfit</button>
+                                <button th:onclick="copyCode([[${outfit.getVer_code}]])" class="listOutfitPositive">Copy Code</button>
+                                <button th:onclick="document.location.href = [[@{/version/}+${outfit.getVer_id()}]]" class="listOutfitPositive">Browse versions</button>
+                                <form action="#" class="listOutfitNegative" th:action="@{/char/deleteOutfit/}+${charName}+@{/}+${outfit.getOut_name()}" th:object="${outfit}" method="post">
+                                    <input type="submit" value="Delete outfit"/>
+                                </form>
                             </div>
                         </div>
+                    </div>
+                    <div class="announcement" th:if="${charOutfits.isEmpty()}">
+                        <p>No outfits!</p>
                     </div>
                 </div>
             </div> 
@@ -93,6 +98,10 @@
                 }
 
                 document.getElementById("newOutfitIHM").style.display = "none";
+            }
+
+            function copyCode(code) {
+                navigator.clipboard.writeText(code);
             }
         </script>
     </body>
