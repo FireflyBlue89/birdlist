@@ -6,10 +6,10 @@ body{
 }
 
 .mainIHM{
-    border-radius: 1%;
+    border-radius: 0.5vw;
     border-top: 0.4vw solid rgb(43, 81, 121);
     box-sizing: border-box;
-    text-shadow: 3px 3px rgb(87, 86, 86);
+    text-shadow: 0.2vw 0 rgba(87, 86, 86,0.5);
     color: white;
     display:block;
     background-color: rgb(26, 50, 75);
@@ -52,13 +52,14 @@ body{
 }
 
 .navBarHeader a{
-    text-shadow: 5px 5px rgb(0, 0, 0);
+    text-shadow: 0.2vw 0 rgba(0, 0, 0, 0.3);
     color: white;
     text-decoration: none;
     font-size: 0.9vw;
-    padding-bottom: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
+    padding-bottom: 0.5%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+
 }
 
 .navBarHeader button{
@@ -73,6 +74,7 @@ body{
     margin-right: 1%;
     padding-top: 0.4%;
     padding-bottom: 0.4%;
+    cursor: pointer;
 }
 
 .navBarContent{
@@ -144,6 +146,12 @@ body{
     font-size: 1.4vw;
     margin-top: 1.1%;
     margin-bottom: 1.1%;
+}
+
+.announcement{
+    width: 100%;
+    text-align: center;
+    font-size: 1vw;
 }
 
 .listOutfit{
@@ -218,11 +226,13 @@ body{
     display: flex;
 }
 
-.listOutfitNegative{
-    width: 33.3%;
+.listOutfitButtons form{
+    display: flex;
+    width: 25%;
+    height: 100%;
 }
 
-.listOutfitNegative input{
+.listOutfitNegative{
     background-color: rgb(143, 6, 6);
     color: white;
     border-top: 0.5vh solid rgb(111, 168, 230) !important;
@@ -234,6 +244,7 @@ body{
     height: 100%;
     font-size: 1.0vw;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .listOutfitPositive{
@@ -245,10 +256,11 @@ body{
     border: 0;
     border-radius: 0;
     box-sizing: border-box;
-    width: 33.3%;
+    width: 25%;
     height: 100%;
     font-size: 1.0vw;
     font-weight: bold;
+    cursor: pointer;
 }
 
 
@@ -285,6 +297,7 @@ body{
 }
 
 .quickListElement{
+    overflow: hidden;
     margin-left: 5%;
     margin-right: 10%;
     margin-bottom: 1%;
@@ -296,6 +309,8 @@ body{
     height: 100%;
     width: 100%;
     text-decoration: none;
+    cursor: pointer;
+
 }
 
 .quickListElement p{
@@ -303,7 +318,7 @@ body{
     margin: 0;
     word-break: break-all;
     color:white;
-    text-shadow: 3px 3px rgb(87, 86, 86);
+    text-shadow: 0.2vw 0 rgba(87, 86, 86,0.5);
     margin-top: 2.5%;
     margin-bottom: 2.5%;
 }
@@ -321,11 +336,38 @@ body{
 }
 
 .newOutfitForm{
-    text-shadow: 3px 3px rgb(87, 86, 86);
+    text-shadow: 0.2vw 0 rgba(87, 86, 86, 0.2);
     color: white;
     background-color: rgb(43, 81, 121);
-    border-radius: 5px;
-    border-top: 5px solid rgb(54, 87, 122);
+    border-radius: 1vw;
+    border-top: 0.2vw solid rgb(54, 87, 122);
+    width: 25%;
+    height: 90%;
+    position: absolute;
+    top: 5%;
+    left: 37.5%;
+    padding-left: 0.75%;
+    padding-top:1%;
+}
+
+.newVersionIHM{
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    overflow: visible;
+}
+
+.newVersionForm{
+    text-shadow: 0.2vw 0 rgba(87, 86, 86, 0.2);
+    color: white;
+    background-color: rgb(43, 81, 121);
+    border-radius: 1vw;
+    border-top: 0.2vw solid rgb(54, 87, 122);
     width: 25%;
     height: 80%;
     position: absolute;
@@ -336,49 +378,174 @@ body{
 }
 
 .newOutfitForm p{
-    font-size: 15px;
+    font-size: 0.8vw;
     font-weight: bold;
+    width: 100%;
+    height: 3%;
     margin-top: 3%;
-    margin-left: 5px;
-    margin-bottom: 3px;
+    margin-left: 1%;
+    margin-bottom: 0.5%;
 }
 
 .newOutfitForm h2{
     height: 7%;
     margin: 0;
+    font-size: 1.2vw;
+    text-align: center;
 }
+
+.newVersionForm p{
+    font-size: 0.8vw;
+    font-weight: bold;
+    width: 100%;
+    height: 3%;
+    margin-top: 3%;
+    margin-left: 1%;
+    margin-bottom: 0.5%;
+}
+
+.newVersionForm h2{
+    height: 7%;
+    margin: 0;
+    font-size: 1.2vw;
+    text-align: center;
+}
+
 
 #newOutfitName{
     width:95%;
-    height: 8%;
+    height: 5%;
     margin-bottom: 1%;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 1vw;
+    border-bottom-left-radius: 1vw;
+    border: 0.15vw solid gray;
+    padding: 1%;
+    font-size: 0.8vw;
+    cursor: pointer;
 }
 
 #newOutfitDesc{
     width: 95%;
-    height: 20%;
+    height: 17%;
     margin-bottom: 1%;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 1vw;
+    border-bottom-left-radius: 1vw;
+    border: 0.15vw solid gray;
+    padding: 1%;
+    font-size: 0.8vw;
+}
+
+#newOutfitFile{
+    display: none;
+}
+
+.newOutfitFileLabel{
+    font-size: 0.9vw;
+    width: 100%;
+    height: 5%;
+    margin:0;
+    border: 0.15vw solid gray;
+    border-radius: 1vw;
+    padding: 2%;
+    margin-top:5%;
+    color: rgb(63, 63, 63);
+    background-color: white;
+    text-shadow: none;
+    cursor: pointer;
 }
 
 #newOutfitSubmit{
     color: white;
-    font-size: 15px;
-    text-shadow: 2px 2px rgb(10, 10, 10);
+    font-size: 0.9vw;
+    text-shadow: 0.2vw 0 rgba(10, 10, 10, 0.3);
     width: 40%;
     height: 7%;
     margin-left: 30%;
     margin-top: 6%;
     margin-bottom: 4%;
-    border-radius: 10px;
+    border-radius: 0.5vw;
     background-color: rgb(118, 164, 202);
-    border-color: white;
+    border: 0.05vw solid white;
+    cursor: pointer;
 }
-
 textarea {
    resize: none;
+   border: 0.15vw solid gray;
+   cursor: pointer;
 }
 
+.warningDelOutfit{
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    overflow: visible;
+}
+
+.warningContent{
+    display:block;
+    text-shadow: 0.2vw 0.2vw rgb(87, 86, 86);
+    color: white;
+    background-color: rgb(54, 87, 122);
+    border-radius: 5%;
+    width: 30%;
+    height: 20%;
+    position: absolute;
+    top: 40%;
+    left: 35%;
+    padding-top:1%;
+}
+
+.warningTitle{
+    height: 60%;
+    width: 100%;
+    padding-left: 3%;
+    padding-right: 3%;
+    box-sizing: border-box;
+}
+
+.warningTitle h2{
+    width: 100%;
+    font-size: 1.2vw;
+    margin: 0;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+.warningTitle p{
+    width: 100%;
+    font-size: 0.9vw;
+    margin: 0;
+}
+
+.warningButtons{
+    display: flex;
+    background-color: rgb(43, 81, 121);
+    height: 40%;
+    width: 100%;
+    border-radius: 5%;
+}
+
+.warningButtons button{
+    width: 30%;
+    margin-left:10%;
+    margin-right:10%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding: 0;
+    height: 70%;
+    font-size: 1vw;
+    font-weight: bold;
+    border: 0;
+    border-radius: 5%;
+    cursor: pointer;
+}
+
+#warningConfirm{
+    background-color: rgb(143, 6, 6);
+    color: white;
+}

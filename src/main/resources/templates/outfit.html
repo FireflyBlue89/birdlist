@@ -34,8 +34,8 @@
                             <p th:text="${outfit.getOut_name()}"></p>
                         </a>
                     </div>
-                    <div class="announcement" th:if="${charOutfits.isEmpty()}">
-                        <p>No outfits!</p>
+                    <div th:if="${charOutfits.isEmpty()}">
+                        <p class="announcement">No outfits!</p>
                     </div>
                 </div>
                 
@@ -53,15 +53,16 @@
                             </div>
                             <div class="listOutfitButtons">
                                 <button th:onclick="copyCode([[${outfit.getVer_code}]])" class="listOutfitPositive">Copy Code</button>
+                                <button onclick="displayNewVersionForm()" class="listOutfitPositive">New Version</button>
                                 <button th:onclick="document.location.href = [[@{/version/}+${outfit.getVer_id()}]]" class="listOutfitPositive">Browse versions</button>
-                                <form action="#" class="listOutfitNegative" th:action="@{/char/deleteOutfit/}+${charName}+@{/}+${outfit.getOut_name()}" th:object="${outfit}" method="post">
-                                    <input type="submit" value="Delete outfit"/>
+                                <form id="delOutfit" action="#" th:action="@{/char/deleteOutfit/}+${charName}+@{/}+${outfit.getOut_name()}" th:object="${outfit}" method="post">
+                                    <input class="listOutfitNegative" type="button" onclick="displayWarning('delOutfit', 'warningDelOutfit')" value="Delete"/>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div class="announcement" th:if="${charOutfits.isEmpty()}">
-                        <p>No outfits!</p>
+                    <div th:if="${charOutfits.isEmpty()}">
+                        <p class="announcement">No outfits!</p>
                     </div>
                 </div>
             </div> 
@@ -71,20 +72,78 @@
             <form class="newOutfitForm" action="#" enctype="multipart/form-data" th:action="@{/char/__${charName}__/addOutfit}" th:object="${newOutfit}" method="post">
                 <h2>Add a new outfit with its first version</h2>
                 <p>Outfit name</p> 
-                <input required maxlength="255" id="newOufitName" type="text" th:field="*{out_name}" />
+                <input required maxlength="255" id="newOutfitName" type="text" th:field="*{out_name}" />
                 <p>Description of this first version of the outfit</p> 
                 <textarea required maxlength="1000" id="newOutfitDesc" type="text" th:field="*{ver_desc}" />
                 <p>Date</p> 
-                <input id="newOutfitFile" required type="date" th:field="*{ver_date}"/>
+                <input required type="date" th:field="*{ver_date}"/>
                 <p>Code</p> 
                 <textarea required maxlength="3000" id="newOutfitDesc" type="text" th:field="*{ver_code}" />
-                <p>Image of the outfit</p> 
+                <p>Image of the outfit</p> <br>
+                <label for="newOutfitFile" class="newOutfitFileLabel">Choose a file</label>
+        
                 <input id="newOutfitFile" required type="file" name="outfit_image" accept="image/png, image/jpeg"/><br>
                 <input id="newOutfitSubmit" type="submit" value="Add" />
             </form>         
         </div> 
 
+        <div class="newVersionIHM" id="newVersionIHM" onclick="hideNewVersionForm()">
+            <form class="newVersionForm" action="#" enctype="multipart/form-data" th:action="@{/version/addVersion}" th:object="${newOutfit}" method="post">
+                <h2>Publish new version</h2>
+                <p>Description of this version</p> 
+                <textarea required maxlength="1000" id="newOutfitDesc" type="text" th:field="*{ver_desc}" />
+                <p>Date</p> 
+                <input required type="date" th:field="*{ver_date}"/>
+                <p>Code</p> 
+                <textarea required maxlength="3000" id="newOutfitDesc" type="text" th:field="*{ver_code}" />
+                <p>Image of the outfit</p> <br>
+                <label for="newOutfitFile" class="newOutfitFileLabel">Choose a file</label>
+        
+                <input id="newOutfitFile" required type="file" name="outfit_image" accept="image/png, image/jpeg"/><br>
+                <input id="newOutfitSubmit" type="submit" value="Add" />
+            </form>         
+        </div>
+        
+        <div onclick="hideWarning()" class="warningDelOutfit" id="warningDelOutfit">
+            <div class="warningContent">
+                <div class="warningTitle">
+                    <h2>Warning</h2>
+                    <p>Are you sure you want to delete this outfit? </br> This includes the outfit and versions</p>
+                </div>
+                <div class="warningButtons">
+                    <button id="warningConfirm" onclick="confirmWarning()">Yes</button>
+                    <button id="warningDelOutfit" onclick="hideWarning()">No</button>
+                </div>
+            </div>
+        </div>
+
         <script>
+            var formStorage = null;
+            var targetConfirm = null;
+
+            function displayWarning(formName, confirmName){
+                targetConfirm = confirmName;
+                formStorage = document.getElementById(formName);
+                document.getElementById(confirmName).style.display = "block";
+            }
+
+            function hideWarning(event){
+                event = event || window.event;
+                var target = event.target || event.srcElement;
+
+                if(target.id != targetConfirm) {
+                    return;
+                }
+
+                document.getElementById(targetConfirm).style.display = "none";
+                formStorage = null;
+            }
+
+            function confirmWarning(){
+                formStorage.submit();
+            }
+
+            
             function displayNewOutfitForm() {
                 document.getElementById("newOutfitIHM").style.display = "block";
             }
@@ -98,6 +157,21 @@
                 }
 
                 document.getElementById("newOutfitIHM").style.display = "none";
+            }
+
+            function displayNewVersionForm() {
+                document.getElementById("newVersionIHM").style.display = "block";
+            }
+
+            function hideNewVersionForm(event) {
+                event = event || window.event;
+                var target = event.target || event.srcElement;
+
+                if(target.id != "newVersionIHM") {
+                    return;
+                }
+
+                document.getElementById("newVersionIHM").style.display = "none";
             }
 
             function copyCode(code) {

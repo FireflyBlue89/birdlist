@@ -8,7 +8,7 @@ body{
 .mainIHM{
     border-radius: 0.5vw;
     border-top: 0.4vw solid rgb(43, 81, 121);
-    text-shadow: 3px 3px rgb(87, 86, 86);
+    text-shadow: 0.2vw 0 rgba(87, 86, 86,0.5);
     color: white;
     display:block;
     background-color: rgb(26, 50, 75);
@@ -37,9 +37,12 @@ body{
     display: flex;
     background-color: rgb(54, 87, 122);
     border-radius: 0.5vw;
-    padding: 0.5%;
+    padding-top: 0.2vw;
+    padding-bottom: 0.2vw;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
     width: 100%;
-    height: 5.5%;
+    height: 2.5vw;
     box-sizing: border-box;
     justify-content: space-between;
 }
@@ -51,17 +54,19 @@ body{
 }
 
 .listHeader button{
-    width: 3%;
-    border-color: gray;
-    border-radius: 50%;
+    width: 3.2%;
+    border-radius: 50vw;
+    padding: 0;
     font-size: 0.9vw;
     font-weight: bold;
+    border: 0.2vw solid gray;
+    cursor: pointer;
 }
 
 .mainList{
     background-color: rgb(43, 81, 121);
     border-radius: 0.5vw;
-    border-top: 3px solid rgb(54, 87, 122);
+    border-top: 0.2vw solid rgb(54, 87, 122);
     width:72.5%;
     height: 100%;
     margin-right: 2.5%;
@@ -75,7 +80,7 @@ body{
 
 .charElement{
     display: flex;
-    height: 30%;
+    height: 13vw;
     width: 98%;
     border: 0.4vw solid rgb(100, 134, 170);
     border-radius: 0.5vw;
@@ -98,46 +103,57 @@ body{
 
 .charBox{
     width: 80%;
-    height: 100%;
 }
 
 .charInfo{
     display:block;
     width:100%;
-    height: auto;
+    height: 80%;
 }
 
 .charInfoName{
     overflow:hidden;
-    font-size: 1.2vw;
+    font-size: 1.1vw !important;
     font-weight: bold;
     color: white;
-    padding-left: 6px;
-    padding-top: 3px;
-    padding-bottom: 3px;
+    padding-left: 1.5%;
+    padding-bottom: 0.7%;
     background-color: rgb(100, 134, 170);
-    height: 30%;
+    height: 25%;
+    box-sizing: border-box;
+}
+
+.charInfoName p{
+    height:auto;
+    margin: 0;
+    margin-top: 0.5% !important;
+    font-size: 1.0vw;
 }
 
 .charInfoDesc{
     overflow:hidden;
-    height: 70%;
-    padding-left: 3px;
+    height: 75%;
+    padding-left: 1%;
+    padding-right: 2%;
+    padding-top: 0.5%;
     word-break: break-all;
 }
 
-.charInfo p{
-    height:auto;
+.charInfoDesc p{
+    height:100%;
     margin: 0;
+    font-size: 0.8vw;
+
 }
 
 .charButtons{
     display:flex;
     width:100%;
-    height: 30%;
+    height: 20%;
 }
 
 .charButtons form{
+    display: flex;
     width: 25%;
     height: 100%;
 }
@@ -145,25 +161,27 @@ body{
 .charDelete{
     background-color: rgb(143, 6, 6);
     color: white;
-    border-top: 4px solid rgb(100, 134, 170) !important;
+    border-top: 0.2vw solid rgb(100, 134, 170) !important;
     border: 0;
-    border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 0.4vw;
     width: 100%;
     height: 100%;
-    font-size: 18px;
+    font-size: 1.0vw;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .charView{
     background-color: rgb(218, 235, 236);
     color: black;
-    border-top: 4px solid rgb(100, 134, 170) !important;
+    border-top: 0.2vw solid rgb(100, 134, 170) !important;
     border: 0;
     border-radius: 0;
     width: 75%;
     height: 100%;
-    font-size: 18px;
+    font-size: 1.0vw;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .charView :hover{
@@ -171,8 +189,8 @@ body{
 }
 
 .quickList{
-    border-radius: 5px;
-    border-top: 3px solid rgb(54, 87, 122);
+    border-radius: 0.4vw;
+    border-top: 0.2vw solid rgb(54, 87, 122);
     background-color: rgb(43, 81, 121);
     width:20%;
     height: 96%;
@@ -180,55 +198,29 @@ body{
     margin-right: 2.5%;
 }
 
-.quickListHeader{
-    display: flex;
-    background-color: rgb(54, 87, 122);
-    padding: 10px;
-    width: 98% - 10px;
-    height: 3% - 10px;
-}
-
-.quickListHeader h2{
-    color: white;
-    text-align: center;
-    margin: 0;
-    font-weight: bold;
-    font-size: 25px;
-    padding-left:5%;
-    width: 90%;
-}
-
-.quickListHeader button{
-    border: 1px solid rgb(26, 50, 75);
-    border-radius: 15px;
-    font-weight: bold;
-    font-size: 15px;
-    width: 5%;
-    height: 100%;
-    padding-top: 0.75%;
-    padding-bottom: 0.75%;
-}
-
 .quickListElement{
     overflow: hidden;
     margin-left: 5%;
     margin-right: 10%;
-    margin-bottom: 1%;
+    margin-bottom: 1.5%;
+    margin-top: 1.5%;
     width: 85%;
-    height: 20px;
+    height: 1.4vw;
 }
 
 .quickListElement a{
     height: 100%;
     width: 100%;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .quickListElement p{
-    font-size: 15px;
+    font-size: 0.9vw;
     margin: 0;
     word-break: break-all;
     color: rgb(142, 218, 253);
-    text-shadow: 3px 3px rgb(87, 86, 86);
+    text-shadow: 0.2vw 0 rgba(87, 86, 86,0.5);
 }
 
 .newCharIHM{
@@ -244,65 +236,98 @@ body{
 }
 
 .newCharForm{
-    text-shadow: 3px 3px rgb(87, 86, 86);
+    text-shadow: 0.2vw 0 rgba(87, 86, 86, 0.2);
     color: white;
     background-color: rgb(43, 81, 121);
-    border-radius: 5px;
-    border-top: 5px solid rgb(54, 87, 122);
+    border-radius: 1vw;
+    border-top: 0.2vw solid rgb(54, 87, 122);
     width: 25%;
-    height: 60%;
+    height: 70%;
     position: absolute;
-    top: 20%;
+    top: 15%;
     left: 37.5%;
     padding-left: 0.75%;
     padding-top:1%;
 }
 
 .newCharForm p{
-    font-size: 15px;
+    font-size: 0.8vw;
     font-weight: bold;
+    width: 100%;
+    height: 5%;
     margin-top: 3%;
-    margin-left: 5px;
-    margin-bottom: 3px;
+    margin-left: 1%;
+    margin-bottom: 0.5%;
 }
 
 .newCharForm h2{
     height: 7%;
     margin: 0;
+    font-size: 1.2vw;
+    text-align: center;
 }
 
 #newCharName{
     width:95%;
     height: 8%;
     margin-bottom: 1%;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 1vw;
+    border-bottom-left-radius: 1vw;
+    border: 0.15vw solid gray;
+    padding: 1%;
+    font-size: 0.8vw;
+    cursor: pointer;
 }
 
 #newCharDesc{
     width: 95%;
     height: 40%;
     margin-bottom: 1%;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 1vw;
+    border-bottom-left-radius: 1vw;
+    border: 0.15vw solid gray;
+    padding: 1%;
+    font-size: 0.8vw;
+}
+
+#newCharFile{
+    display: none;
+}
+
+.newCharFileLabel{
+    font-size: 0.9vw;
+    width: 100%;
+    height: 5%;
+    margin:0;
+    border: 0.15vw solid gray;
+    border-radius: 1vw;
+    padding: 2%;
+    margin-top:5%;
+    color: rgb(63, 63, 63);
+    background-color: white;
+    text-shadow: none;
+    cursor: pointer;
 }
 
 #newCharSubmit{
     color: white;
-    font-size: 15px;
-    text-shadow: 2px 2px rgb(10, 10, 10);
+    font-size: 0.9vw;
+    text-shadow: 0.2vw 0 rgba(10, 10, 10, 0.3);
     width: 40%;
     height: 7%;
     margin-left: 30%;
     margin-top: 6%;
     margin-bottom: 4%;
-    border-radius: 10px;
+    border-radius: 0.5vw;
     background-color: rgb(118, 164, 202);
-    border-color: white;
+    border: 0.05vw solid white;
+    cursor: pointer;
 }
 
 textarea {
    resize: none;
+   border: 0.15vw solid gray;
+   cursor: pointer;
 }
   
 .warningDelChar{
@@ -373,6 +398,7 @@ textarea {
     font-weight: bold;
     border: 0;
     border-radius: 5%;
+    cursor: pointer;
 }
 
 #warningConfirm{

@@ -66,8 +66,11 @@
                 <input required maxlength="255" id="newCharName" type="text" th:field="*{name}" />
                 <p>Description</p> 
                 <textarea required maxlength="3000" oninput="checksize" id="newCharDesc" type="text" th:field="*{description}" />
-                <p>Profile image</p> 
+                <p>Profile image</p>
+                
+                <label for="newCharFile" class="newCharFileLabel">Choose a file</label>
                 <input id="newCharFile" required type="file" name="profile" accept="image/png, image/jpeg"/><br>
+                
                 <input id="newCharSubmit" type="submit" value="Add" />
             </form>         
         </div> 
