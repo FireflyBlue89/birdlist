@@ -28,7 +28,7 @@
                 <div class="mainList">
                     <div class="listHeader">
                         <h2>List of characters</h2>
-                        <button onClick="displayNewCharForm()">+</button>
+                        <button th:onclick="displayNewCharForm([[${listChar}]])">+</button>
                     </div>
                     <div>
                         <div class="charElement" th:if="${anyChar}" th:each="char : ${listChar}">
@@ -71,7 +71,7 @@
                 <label for="newCharFile" class="newCharFileLabel">Choose a file</label>
                 <input id="newCharFile" required type="file" name="profile" accept="image/png, image/jpeg"/><br>
                 
-                <input id="newCharSubmit" type="submit" value="Add" />
+                <button id="newCharSubmit" th:onclick="sendNewCharForm([[${listChar}]])">Add</button>
             </form>         
         </div> 
 
@@ -91,6 +91,7 @@
         <script>
             var formStorage = null;
             var targetConfirm = null;
+
 
             function displayWarning(formName, confirmName){
                 targetConfirm = confirmName;
@@ -122,12 +123,28 @@
             function hideNewCharForm(event) {
                 event = event || window.event;
                 var target = event.target || event.srcElement;
+                
 
                 if(target.id != "newCharIHM") {
                     return;
                 }
 
                 document.getElementById("newCharIHM").style.display = "none";
+            }
+
+            function sendNewCharForm(listChar) {
+                var tempForm = document.getElementById("newCharForm");
+                for(var i = 0; i < listChar.length; i++) {
+                    console.log(listChar[i].name);
+                    if(listChar[i].name == document.getElementById("newCharName").value) {
+                        alert("Another character has the same name...");
+                        return false;
+                    }
+                }
+
+                listChar = null;
+                tempForm.submit();
+                tempForm = null;
             }
         </script>
         

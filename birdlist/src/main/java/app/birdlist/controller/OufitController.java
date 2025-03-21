@@ -20,6 +20,7 @@ import app.birdlist.entity.Characters;
 import app.birdlist.entity.Outfits;
 import app.birdlist.entity.Version;
 import app.birdlist.object.InfoOutfit;
+import app.birdlist.object.InfoVersion;
 import app.birdlist.repository.CharacterRepository;
 import jakarta.transaction.Transactional;
 
@@ -51,8 +52,9 @@ public class OufitController {
 
 			for(Outfits out : outfits){
 				temp = new InfoOutfit();
-				temp2 = out.getVersions().getLast();
+				temp2 = out.getVersions().get(out.getVersions().size() - 1);;
 
+				temp.setOut_id(out.getId());
 				temp.setOut_name(out.getName());
 				temp.setVer_id(temp2.getId());
 				temp.setVer_desc(temp2.getChangelog());
@@ -65,6 +67,7 @@ public class OufitController {
 
             outfitModel.addAttribute("charOutfits", charOutfits);
             outfitModel.addAttribute("newOutfit", new InfoOutfit());
+			outfitModel.addAttribute("newVersion", new InfoVersion());
 			return "outfit.html";
 		}else{
 			System.out.println("Exist or error");
@@ -83,7 +86,7 @@ public class OufitController {
 			List<Outfits> outs = chara.getOutfits();
 			List<Version> vers = new ArrayList<>();
 
-
+			ver.setCharName(charName);
 			ver.setTitle("Initial Version");
 			ver.setDate(newOutfit.getVer_date());
 			ver.setCharacter_image(allB);

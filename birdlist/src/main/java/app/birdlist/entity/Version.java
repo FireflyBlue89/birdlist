@@ -18,6 +18,9 @@ public class Version {
     @Column(name="ver_id")
     private int id;
 
+    @Column(name="ver_char")
+    private String charName;
+
     @Column(name="ver_title")
     private String title;
 
@@ -46,6 +49,14 @@ public class Version {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getCharName() {
+        return charName;
+    }
+
+    public void setCharName(String charName) {
+        this.charName = charName;
     }
 
     public String getTitle() {

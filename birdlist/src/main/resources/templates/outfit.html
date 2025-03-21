@@ -53,7 +53,7 @@
                             </div>
                             <div class="listOutfitButtons">
                                 <button th:onclick="copyCode([[${outfit.getVer_code}]])" class="listOutfitPositive">Copy Code</button>
-                                <button onclick="displayNewVersionForm()" class="listOutfitPositive">New Version</button>
+                                <button th:onclick="displayNewVersionForm([[${charName}]], [[${outfit.getOut_id}]])" class="listOutfitPositive">New Version</button>
                                 <button th:onclick="document.location.href = [[@{/version/}+${outfit.getVer_id()}]]" class="listOutfitPositive">Browse versions</button>
                                 <form id="delOutfit" action="#" th:action="@{/char/deleteOutfit/}+${charName}+@{/}+${outfit.getOut_name()}" th:object="${outfit}" method="post">
                                     <input class="listOutfitNegative" type="button" onclick="displayWarning('delOutfit', 'warningDelOutfit')" value="Delete"/>
@@ -88,19 +88,21 @@
         </div> 
 
         <div class="newVersionIHM" id="newVersionIHM" onclick="hideNewVersionForm()">
-            <form class="newVersionForm" action="#" enctype="multipart/form-data" th:action="@{/version/addVersion}" th:object="${newOutfit}" method="post">
+            <form id="newVersionForm" class="newVersionForm" action="#" enctype="multipart/form-data" th:action="@{/version/addVersion}" th:object="${newVersion}" method="post">
                 <h2>Publish new version</h2>
+                <p>Version title</p> 
+                <input required maxlength="255" id="newOutfitName" type="text" th:field="*{title}" />
                 <p>Description of this version</p> 
-                <textarea required maxlength="1000" id="newOutfitDesc" type="text" th:field="*{ver_desc}" />
+                <textarea required maxlength="1000" id="newOutfitDesc" type="text" th:field="*{changelog}" />
                 <p>Date</p> 
-                <input required type="date" th:field="*{ver_date}"/>
+                <input required type="date" th:field="*{date}"/>
                 <p>Code</p> 
-                <textarea required maxlength="3000" id="newOutfitDesc" type="text" th:field="*{ver_code}" />
+                <textarea required maxlength="3000" id="newOutfitDesc" type="text" th:field="*{code}" />
                 <p>Image of the outfit</p> <br>
-                <label for="newOutfitFile" class="newOutfitFileLabel">Choose a file</label>
+                <label for="newVersionFile" class="newOutfitFileLabel">Choose a file</label>
         
-                <input id="newOutfitFile" required type="file" name="outfit_image" accept="image/png, image/jpeg"/><br>
-                <input id="newOutfitSubmit" type="submit" value="Add" />
+                <input id="newVersionFile" required type="file" name="version_image" accept="image/png, image/jpeg"/><br>
+                <button id="newVersionSubmit" onclick="confirmVersion()">Add</button>
             </form>         
         </div>
         
@@ -120,6 +122,8 @@
         <script>
             var formStorage = null;
             var targetConfirm = null;
+            var outfit_id = null;
+            var char_name = null;
 
             function displayWarning(formName, confirmName){
                 targetConfirm = confirmName;
@@ -144,7 +148,7 @@
             }
 
             
-            function displayNewOutfitForm() {
+            function displayNewOutfitForm(outfit_id) {
                 document.getElementById("newOutfitIHM").style.display = "block";
             }
 
@@ -159,7 +163,9 @@
                 document.getElementById("newOutfitIHM").style.display = "none";
             }
 
-            function displayNewVersionForm() {
+            function displayNewVersionForm(name, outfit) {
+                outfit_id = outfit;
+                char_name = name;
                 document.getElementById("newVersionIHM").style.display = "block";
             }
 
@@ -172,6 +178,20 @@
                 }
 
                 document.getElementById("newVersionIHM").style.display = "none";
+            }
+            
+            function confirmVersion() {
+                var tempForm = document.getElementById("newVersionForm");
+                
+                for(var i=0; i < tempForm.elements.length; i++){
+                    if(tempForm.elements[i].value === '' && tempForm.elements[i].hasAttribute('required')){
+                        alert('Not everything was filled!');
+                        return false;
+                    }
+                }
+
+                tempForm.action = "/version/addVersion/" + char_name + "/" + outfit_id;
+                tempForm.submit();
             }
 
             function copyCode(code) {

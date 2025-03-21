@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" href="../version.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BirdList</title>
+    </head>
+    <body>
+        <div class="versionCard">
+            <div class="versionCardHeader">
+                <a th:if="${version.getPrev()} != '-1'" th:href="@{/version/}+${version.getPrev()}">&larr;</a>
+                <p th:if="${version.getPrev()} == '-1'">First version</p>
+                <h2 th:text="${version.getTitle()} + ' &#40;N°' + ${version.getId()} + '&#41;'">Version</h2>
+                <a th:if="${version.getNext()} != '-1'" th:href="@{/version/}+${version.getNext()}">&rightarrow;</a>
+                <p th:if="${version.getNext()} == '-1'">Last version</p>
+            </div>
+            <div class="versionCardBody">
+                <div class="versionCardDisplay">
+                    <img th:src="@{../images/version/}+${version.getId()}" onclick="window.open(this.src)"/>
+                </div>
+                <div class="versionCardInfo">
+                    <p id="InfoDate" class="InfoText" th:text="'Date of creation: ' + ${version.getDate()}"></p>
+                    <div class="InfoChangelog">
+                        <p class="InfoTitle">Changelog</p>
+                        <p class="InfoText" th:text="${version.getChangelog()}"></p>
+                    </div>
+                    <div class="InfoCode">
+                        <p class="InfoTitle">Code</p>
+                        <p class="InfoText" th:text="${version.getCode()}"></p>
+                    </div>
+                    <div class="InfoButtons">
+                        <button th:onclick="copyCode([[${version.getCode()}]])">Copy Code</button>
+                        <button th:onclick="document.location.href = [[@{/char/}+${version.getChar_name()}]]">Return to the outfits</button>
+                    </div>
+                </div>
+            </div>
+        </div>         
+    </body>
+    <script>
+        function copyCode(code) {
+            navigator.clipboard.writeText(code);
+        }
+    </script>
+</html>
+

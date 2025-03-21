@@ -203,9 +203,11 @@ body{
 }
 
 .listOutfitText{
+    box-sizing: border-box;
     width: 100%;
     height: 60%;
     padding-left: 1%;
+    padding-right: 1%;
     font-size: 0.8vw;
 }   
 
@@ -439,6 +441,10 @@ body{
     display: none;
 }
 
+#newVersionFile{
+    display: none;
+}
+
 .newOutfitFileLabel{
     font-size: 0.9vw;
     width: 100%;
@@ -468,6 +474,22 @@ body{
     border: 0.05vw solid white;
     cursor: pointer;
 }
+
+#newVersionSubmit{
+    color: white;
+    font-size: 0.9vw;
+    text-shadow: 0.2vw 0 rgba(10, 10, 10, 0.3);
+    width: 40%;
+    height: 7%;
+    margin-left: 30%;
+    margin-top: 6%;
+    margin-bottom: 4%;
+    border-radius: 0.5vw;
+    background-color: rgb(118, 164, 202);
+    border: 0.05vw solid white;
+    cursor: pointer;
+}
+
 textarea {
    resize: none;
    border: 0.15vw solid gray;

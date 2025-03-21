@@ -3,6 +3,8 @@ package app.birdlist.object;
 import java.sql.Date;
 
 public class InfoOutfit {
+    private Integer out_id;
+
     private String out_name;
 
     private Integer ver_id;
@@ -12,6 +14,14 @@ public class InfoOutfit {
     private Date ver_date;
 
     private String ver_code;
+
+    public Integer getOut_id() {
+        return out_id;
+    }
+
+    public void setOut_id(Integer out_id) {
+        this.out_id = out_id;
+    }
 
     public Integer getVer_id() {
         return ver_id;
