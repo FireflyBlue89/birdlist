@@ -6,3 +6,9 @@ A webapp made to be able to store a large amount of characters, outfits of chara
 - Compile it yourself on linux with "mvn springboot:run" command (needs maven and java 18). You will also need to setup a mysql server with identifications of it changed in the "application.properties" file (URL, username, password of said database).
 - Use docker: with docker installed and running (on any devices) use the docker compose file. Or if you're on windows just double click the "start.bat" and when you're done with the application or want to stop it form using your ressources double-click the "stop.bat".
 - In both cases when it's launched, open your browser on "http://localhost:8080/"
+
+# Changelog
+1.0: Initial Release.
+1.0.1: README update.
+1.0.2: Docker fix.
+1.0.3: Bug fix, deleting any character/outfit deleted the first character/outfit, fix the code size being too small for some people.

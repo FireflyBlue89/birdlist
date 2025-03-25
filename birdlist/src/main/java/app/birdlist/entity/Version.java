@@ -40,7 +40,7 @@ public class Version {
     @Column(name="ver_changelog", columnDefinition="VARCHAR(1000)")
     private String changelog;
 
-    @Column(name="ver_code", columnDefinition="VARCHAR(3000)")
+    @Column(name="ver_code", columnDefinition="TEXT(15000)")
     private String ver_code;
 
     public int getId() {

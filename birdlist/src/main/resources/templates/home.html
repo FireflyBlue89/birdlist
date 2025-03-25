@@ -44,8 +44,8 @@
                                 </div>
                                 <div class="charButtons">
                                     <button class="charView" th:onclick="document.location.href = [[@{/char/}+${char.getName()}]]">View Outfits</button>
-                                    <form id="delChar" action="#" th:action="@{/deleteChar/}+${char.getName()}" th:object="${newChar}" method="post">
-                                        <input class="charDelete" type="button" onclick="displayWarning('delChar', 'warningDelChar')" value="Delete"/>
+                                    <form th:id="'delChar' + ${char.getName()}" action="#" th:action="@{/deleteChar/}+${char.getName()}" th:object="${newChar}" method="post">
+                                        <input class="charDelete" type="button" th:attr="onclick=|displayWarning('delChar' + '${char.getName()}', 'warningDelChar')|" value="Delete"/>
                                     </form>
                                 </div>
                             </div>
